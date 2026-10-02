@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap will be added after the site has a public production domain.

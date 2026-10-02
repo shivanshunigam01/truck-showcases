@@ -1,24 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
+import RajHoulageSite from "@/components/RajHoulageSite";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Raj Houlage Pvt. Ltd. | Road Transportation & Logistics" },
+      { name: "description", content: "Raj Houlage Pvt. Ltd. provides road transportation and logistics solutions focused on reliable and efficient movement of goods across India." },
+      { property: "og:title", content: "Raj Houlage Pvt. Ltd. | Road Transportation & Logistics" },
+      { property: "og:description", content: "Reliable road transportation and logistics solutions built around dependability, efficiency and long-term business relationships." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Raj Houlage Pvt. Ltd.",
+        description: "Road Transportation & Logistics",
+        telephone: "+91 76987 80592",
+        email: "vr7278906@gmail.com",
+        address: { "@type": "PostalAddress", streetAddress: "Navrangpura, near Stadium Cross Road", addressLocality: "Ahmedabad", addressRegion: "Gujarat", postalCode: "382340", addressCountry: "IN" },
+      }),
+    }],
+  }),
+  component: RajHoulageSite,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
