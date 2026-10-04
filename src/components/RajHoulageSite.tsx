@@ -1,8 +1,16 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Mail, MapPin, Menu, Phone, Truck, X } from "lucide-react";
-import logo from "@/assets/raj-houlage-logo.png.asset.json";
-import { fleetData, images, industries, nav, reasons, services, stats } from "@/data/site";
+import { fleetData, images, industries, logoUrl, nav, reasons, rkGroupLogoUrl, services, stats } from "@/data/site";
+
+function BrandLogos({ className = "" }: { className?: string }) {
+  return (
+    <div className={`brand-logos ${className}`.trim()}>
+      <img className="brand-logo-raj" src={logoUrl} alt="Raj Houlage Pvt. Ltd." />
+      <img className="brand-logo-rk" src={rkGroupLogoUrl} alt="RK Group" />
+    </div>
+  );
+}
 
 const MotionSection = motion.section;
 
@@ -21,7 +29,9 @@ function Navbar() {
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 32); onScroll(); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll); }, []);
   return <>
     <header className={`site-nav ${scrolled ? "site-nav-scrolled" : ""}`}>
-      <a href="#home" className="brand" aria-label="Raj Houlage home"><img src={logo.url} alt="Raj Houlage Pvt. Ltd." /><span><strong>RAJ HOULAGE</strong><small>Road Transportation & Logistics</small></span></a>
+      <a href="#home" className="brand" aria-label="Raj Houlage home — by RK Group">
+        <BrandLogos />
+      </a>
       <nav className="desktop-nav" aria-label="Primary navigation">{nav.map((item) => <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`}>{item}</a>)}</nav>
       <a href="#quote" className="nav-cta">Get a quote <ArrowRight size={16} /></a>
       <button className="menu-button" onClick={() => setOpen(true)} aria-label="Open menu"><Menu /></button>
@@ -38,7 +48,14 @@ function Hero() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, .3], [0, 100]);
   return <section id="home" className="hero">
-    <motion.img style={{ y }} className="hero-media" src={images.hero} alt="Heavy transport truck travelling on the highway" />
+    <motion.img
+      style={{ y }}
+      className="hero-media"
+      src={images.hero}
+      alt="Tractor-trailer hauling cargo on an Indian highway"
+      fetchPriority="high"
+      decoding="async"
+    />
     <div className="hero-shade" /><div className="hero-grid" />
     <div className="hero-content">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .8 }} className="hero-kicker"><span>Ahmedabad · Gujarat</span><span>Road transportation</span></motion.div>
@@ -55,7 +72,7 @@ function IntroAbout() {
     <Reveal><span className="eyebrow">Built on dependable movement</span><h2>Built to move<br />business <em>forward.</em></h2></Reveal>
     <Reveal className="intro-copy"><span className="big-index">01</span><p>Raj Houlage Pvt. Ltd. is focused on dependable road transportation and logistics solutions designed to help businesses move goods efficiently and reliably — from bulk construction materials to general cargo, across Gujarat and beyond.</p></Reveal>
   </MotionSection>
-  <section id="about" className="about section-pad"><div className="about-image"><img src={images.road} alt="Freight truck moving along an open highway" /><span>Movement / Reliability / Scale</span></div>
+  <section id="about" className="about section-pad"><div className="about-image"><img src={images.road} alt="Dump truck delivering bulk gravel and materials to a construction site" /><span>Movement / Reliability / Scale</span></div>
     <Reveal className="about-copy"><SectionTitle eyebrow="About Raj Houlage">More than transportation.<br /><em>A commitment to movement.</em></SectionTitle><p>Raj Houlage Pvt. Ltd. is being developed with a long-term vision for dependable road transportation, operational discipline and strong customer relationships. Since starting operations, the company has focused on building a lean, reliable fleet and earning the trust of every client it serves.</p><a className="text-link" href="#vision">Our vision <ArrowRight /></a></Reveal>
   </section></>;
 }
@@ -79,7 +96,7 @@ function Journey() {
 }
 
 function Industries() {
-  return <section id="industries" className="industries section-pad"><Reveal><SectionTitle eyebrow="Sectors in motion">Industries we serve</SectionTitle></Reveal><div className="industry-layout"><div className="industry-image"><img src={images.warehouse} alt="Industrial warehouse and logistics operations" /></div><div className="industry-list">{industries.map((item, i) => <Reveal className="industry-item" key={item}><span>{String(i + 1).padStart(2, "0")}</span><h3>{item}</h3><ArrowRight /></Reveal>)}</div></div></section>;
+  return <section id="industries" className="industries section-pad"><Reveal><SectionTitle eyebrow="Sectors in motion">Industries we serve</SectionTitle></Reveal><div className="industry-layout"><div className="industry-image"><img src={images.industries} alt="Gravel and aggregate being loaded onto a haulage truck for construction delivery" /></div><div className="industry-list">{industries.map((item, i) => <Reveal className="industry-item" key={item}><span>{String(i + 1).padStart(2, "0")}</span><h3>{item}</h3><ArrowRight /></Reveal>)}</div></div></section>;
 }
 
 function WhyUs() {
@@ -88,7 +105,7 @@ function WhyUs() {
 
 function ShowcaseVision() {
   return <><section className="showcase section-pad"><Reveal><SectionTitle eyebrow="On the road">Movement in motion</SectionTitle><p className="section-lead">Transportation is not simply about moving from one point to another. It is about keeping business moving.</p></Reveal><div className="showcase-grid"><Reveal className="media-panel wide"><img src={images.logistics} alt="Truck fleet moving cargo on the road" /><span>Road transport</span></Reveal><Reveal className="media-panel"><img src={images.cargo} alt="Cargo and container logistics operation" /><span>Industrial logistics</span></Reveal></div></section>
-  <section id="vision" className="vision section-pad"><Reveal><SectionTitle eyebrow="Company vision">From one journey to<br /><em>a greater vision.</em></SectionTitle><p>Raj Houlage Pvt. Ltd. represents the beginning of a broader entrepreneurial vision under RK Group — building strong businesses with a long-term focus on reliability, growth and scale.</p></Reveal><Reveal className="rk-panel"><img src={logo.url} alt="Raj Houlage by RK Group logo" /><div><span className="eyebrow">By RK Group</span><h3>A broader entrepreneurial vision.</h3><p>Raj Houlage Pvt. Ltd. represents the beginning of a broader entrepreneurial vision under RK Group.</p></div></Reveal></section></>;
+  <section id="vision" className="vision section-pad"><Reveal><SectionTitle eyebrow="Company vision">From one journey to<br /><em>a greater vision.</em></SectionTitle><p>Raj Houlage Pvt. Ltd. represents the beginning of a broader entrepreneurial vision under RK Group — building strong businesses with a long-term focus on reliability, growth and scale.</p></Reveal><Reveal className="rk-panel"><img src={rkGroupLogoUrl} alt="RK Group logo" /><div><span className="eyebrow">By RK Group</span><h3>A broader entrepreneurial vision.</h3><p>Raj Houlage Pvt. Ltd. represents the beginning of a broader entrepreneurial vision under RK Group.</p></div></Reveal></section></>;
 }
 
 function Stats() { return <section className="stats">{stats.map(([n, label]) => <Reveal className="stat" key={label}><strong>{n}</strong><span>{label}</span></Reveal>)}</section>; }
@@ -104,6 +121,28 @@ function QuoteContact() {
   <section id="contact" className="contact section-pad"><Reveal><SectionTitle eyebrow="Contact">Let's talk transportation.</SectionTitle></Reveal><div className="contact-grid"><a href="tel:+917698780592"><Phone/><span>Phone</span><strong>+91 76987 80592</strong></a><a href="mailto:vr7278906@gmail.com"><Mail/><span>Email</span><strong>vr7278906@gmail.com</strong></a><div><MapPin/><span>Address</span><strong>Navrangpura, near Stadium Cross Road,<br/>Ahmedabad, Gujarat – 382340</strong></div><div><Clock3/><span>Business hours</span><strong>Open 24/7</strong></div></div></section></>;
 }
 
-function Footer() { return <footer><div className="footer-top"><a href="#home" className="footer-brand"><img src={logo.url} alt="Raj Houlage Pvt. Ltd." /><span>Road Transportation & Logistics</span></a><nav>{nav.map((item)=><a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`}>{item}</a>)}<a href="#quote">Get a Quote</a></nav></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Raj Houlage Pvt. Ltd.</span><span>By RK Group · Ahmedabad, Gujarat</span></div></footer>; }
+function Footer() {
+  return (
+    <footer>
+      <div className="footer-top">
+        <a href="#home" className="footer-brand" aria-label="Raj Houlage home — by RK Group">
+          <BrandLogos className="footer-logos" />
+        </a>
+        <nav>
+          {nav.map((item) => (
+            <a key={item} href={`#${item.toLowerCase().replace(" ", "-")}`}>
+              {item}
+            </a>
+          ))}
+          <a href="#quote">Get a Quote</a>
+        </nav>
+      </div>
+      <div className="footer-bottom">
+        <span>© {new Date().getFullYear()} Raj Houlage Pvt. Ltd.</span>
+        <span>By RK Group · Ahmedabad, Gujarat</span>
+      </div>
+    </footer>
+  );
+}
 
 export default function RajHoulageSite() { return <main><Navbar/><Hero/><IntroAbout/><Services/><Fleet/><Journey/><Industries/><WhyUs/><ShowcaseVision/><Stats/><QuoteContact/><Footer/></main>; }

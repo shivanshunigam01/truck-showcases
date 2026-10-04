@@ -1,18 +1,17 @@
-import hero from "@/assets/hero.jpg.asset.json";
-import fleet from "@/assets/fleet.jpg.asset.json";
-import road from "@/assets/road.jpg.asset.json";
-import warehouse from "@/assets/warehouse.jpg.asset.json";
-import cargo from "@/assets/cargo.jpg.asset.json";
-import logistics from "@/assets/logistics.jpg.asset.json";
+import { UNSPLASH_TRUCK } from "@/lib/unsplash";
+
+/** Brand logos (PNG with transparent background). */
+export const logoUrl = "/raj-houlage-logo.png";
+export const rkGroupLogoUrl = "/rk-group-logo.png";
 
 export const images = {
-  hero: hero.url,
-  fleet: fleet.url,
-  road: road.url,
-  warehouse: warehouse.url,
-  cargo: cargo.url,
-  logistics: logistics.url,
-};
+  hero: UNSPLASH_TRUCK.heroHighway,
+  fleet: UNSPLASH_TRUCK.fleetDepot,
+  road: UNSPLASH_TRUCK.aboutMovement,
+  industries: UNSPLASH_TRUCK.industriesHaulage,
+  cargo: UNSPLASH_TRUCK.containerCargo,
+  logistics: UNSPLASH_TRUCK.roadLogistics,
+} as const;
 
 export const nav = ["Home", "About", "Services", "Fleet", "Industries", "Why Us", "Contact"];
 
@@ -25,14 +24,22 @@ export const services = [
 ];
 
 export const fleetData = [
-  { name: "Container carriers", count: "5+", image: images.cargo },
-  { name: "Heavy trucks", count: "4+", image: images.hero },
-  { name: "Multi-axle trucks", count: "2+", image: images.fleet },
+  { name: "Container carriers", count: "5+", image: UNSPLASH_TRUCK.containerCargo },
+  { name: "Heavy trucks", count: "4+", image: UNSPLASH_TRUCK.heroHighway },
+  { name: "Multi-axle trucks", count: "2+", image: UNSPLASH_TRUCK.heavyTruck },
 ];
 
 export const industries = [
-  "Manufacturing", "Automotive", "Construction", "FMCG", "Retail",
-  "Infrastructure", "Industrial Goods", "E-Commerce", "Agriculture", "General Cargo",
+  "Manufacturing",
+  "Automotive",
+  "Construction",
+  "FMCG",
+  "Retail",
+  "Infrastructure",
+  "Industrial Goods",
+  "E-Commerce",
+  "Agriculture",
+  "General Cargo",
 ];
 
 export const reasons = [
@@ -44,6 +51,9 @@ export const reasons = [
 ];
 
 export const stats = [
-  ["8+", "Trucks in Fleet"], ["10+", "Projects Delivered"], ["6+", "Clients Served"],
-  ["1+", "Year in Operation"], ["13.6M", "Company Valuation (USD)"],
+  ["8+", "Trucks in Fleet"],
+  ["10+", "Projects Delivered"],
+  ["6+", "Clients Served"],
+  ["1+", "Year in Operation"],
+  ["13.6M", "Company Valuation (USD)"],
 ];

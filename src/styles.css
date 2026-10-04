@@ -157,19 +157,36 @@
 @utility section-pad { padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem); }
 
 main { overflow: clip; }
-.site-nav { position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 88px; display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 2.2rem; padding: 0 4.5vw; color: var(--primary-foreground); transition: .3s ease; }
-.site-nav-scrolled { height: 70px; background: color-mix(in oklab, var(--foreground) 90%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid color-mix(in oklab, var(--primary-foreground) 14%, transparent); }
-.brand { display: flex; min-width: 0; align-items: center; gap: .8rem; width: max-content; }
-.brand img { width: 70px; height: 52px; object-fit: contain; }
-.brand span { display: grid; }
-.brand strong { font: 700 1.25rem/1 var(--font-display); }
-.brand small { font-size: .54rem; margin-top: .3rem; text-transform: uppercase; letter-spacing: .16em; opacity: .72; }
+.site-nav {
+  position: fixed; z-index: 50; top: 0; left: 0; width: 100%; height: 108px;
+  display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 2.2rem; padding: 0 4.5vw;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--background) 92%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--foreground) 4%, transparent);
+  transition: background .3s ease, height .3s ease, box-shadow .3s ease;
+}
+.site-nav-scrolled {
+  height: 92px;
+  background: color-mix(in oklab, var(--card) 97%, transparent);
+  box-shadow: 0 8px 32px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+.brand { display: flex; min-width: 0; align-items: center; width: max-content; }
+.brand-logos { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.brand-logo-raj { width: auto; height: 76px; max-width: min(280px, 48vw); object-fit: contain; object-position: left center; }
+.brand-logo-rk { width: auto; height: 62px; max-width: min(180px, 34vw); object-fit: contain; object-position: left center; }
+.footer-logos { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+.footer-logos .brand-logo-raj { height: clamp(100px, 14vw, 140px); max-width: min(440px, 96vw); }
+.footer-logos .brand-logo-rk { height: clamp(80px, 11vw, 112px); max-width: min(360px, 92vw); }
 .desktop-nav { display: flex; align-items: center; gap: 1.55rem; font-size: .72rem; font-weight: 700; text-transform: uppercase; }
 .desktop-nav a { position: relative; }
 .desktop-nav a::after { content: ""; position: absolute; left: 0; bottom: -.5rem; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: right; transition: transform .25s; }
 .desktop-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
-.nav-cta,.button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 48px; padding: 0 1.25rem; font-size: .72rem; font-weight: 800; text-transform: uppercase; border: 1px solid color-mix(in oklab, var(--primary-foreground) 35%, transparent); transition: .25s; }
-.nav-cta:hover,.button-primary:hover { background: var(--primary-foreground); color: var(--foreground); }
+.nav-cta,.button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 48px; padding: 0 1.25rem; font-size: .72rem; font-weight: 800; text-transform: uppercase; border: 1px solid color-mix(in oklab, var(--foreground) 22%, transparent); transition: .25s; }
+.site-nav .nav-cta { border-color: var(--primary); color: var(--foreground); background: color-mix(in oklab, var(--background) 60%, transparent); }
+.site-nav .nav-cta:hover { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+.nav-cta:hover,.button-primary:hover { background: var(--primary); color: var(--primary-foreground); }
 .menu-button { display: none; color: inherit; background: none; border: 0; padding: .6rem; }
 .mobile-menu { position: fixed; inset: 0; z-index: 100; padding: 1.5rem; background: var(--foreground); color: var(--primary-foreground); display: flex; flex-direction: column; }
 .mobile-menu > button { align-self: flex-end; padding: .6rem; color: inherit; background: none; border: 0; }
@@ -181,7 +198,7 @@ main { overflow: clip; }
 .hero-media { object-fit: cover; z-index: -3; scale: 1.05; }
 .hero-shade { z-index: -2; background: linear-gradient(90deg, color-mix(in oklab, var(--foreground) 90%, transparent) 0%, color-mix(in oklab, var(--foreground) 45%, transparent) 55%, color-mix(in oklab, var(--foreground) 15%, transparent) 100%), linear-gradient(0deg, color-mix(in oklab, var(--foreground) 78%, transparent), transparent 55%); }
 .hero-grid { z-index: -1; opacity: .1; background-image: linear-gradient(to right, var(--primary-foreground) 1px, transparent 1px); background-size: 25% 100%; }
-.hero-content { width: 100%; padding: 9rem 5vw 7.5rem; }
+.hero-content { width: 100%; padding: 10.5rem 5vw 7.5rem; }
 .hero-kicker { display: flex; gap: 1.5rem; text-transform: uppercase; font-size: .64rem; font-weight: 700; color: color-mix(in oklab, var(--primary-foreground) 72%, transparent); }
 .hero h1,.cta h2 { max-width: 1150px; margin: 1.2rem 0 2.25rem; font: 700 clamp(4.4rem, 10vw, 10rem)/.78 var(--font-display); text-transform: uppercase; }
 h1 em,h2 em { color: var(--primary); font-style: normal; }
@@ -279,13 +296,19 @@ h1 em,h2 em { color: var(--primary); font-style: normal; }
 .contact-grid svg { color: var(--primary); }
 .contact-grid span { margin-top: 1rem; color: var(--muted-foreground); font-size: .65rem; font-weight: 800; text-transform: uppercase; }
 .contact-grid strong { font-size: .84rem; line-height: 1.6; overflow-wrap: anywhere; }
-footer { padding: 4rem 5vw 1.5rem; background: var(--foreground); color: var(--primary-foreground); }
+footer {
+  padding: 4rem 5vw 1.5rem;
+  background: color-mix(in oklab, var(--background) 94%, var(--card));
+  color: var(--foreground);
+  border-top: 1px solid var(--border);
+}
 .footer-top { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 4rem; }
-.footer-brand { display: grid; width: max-content; color: color-mix(in oklab, var(--primary-foreground) 65%, transparent); font-size: .75rem; }
-.footer-brand img { width: min(320px, 70vw); max-height: 180px; object-fit: contain; object-position: left; }
-.footer-top nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; align-content: center; font: 600 1.2rem var(--font-display); text-transform: uppercase; }
+.footer-brand { display: grid; width: max-content; font-size: .75rem; }
+.footer-brand .brand-logos { width: max-content; }
+.footer-top nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; align-content: center; font: 600 1.2rem var(--font-display); text-transform: uppercase; color: var(--foreground); }
+.footer-top nav a { color: color-mix(in oklab, var(--foreground) 88%, transparent); }
 .footer-top nav a:hover { color: var(--primary); }
-.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid color-mix(in oklab, var(--primary-foreground) 15%, transparent); color: color-mix(in oklab, var(--primary-foreground) 50%, transparent); font-size: .65rem; text-transform: uppercase; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted-foreground); font-size: .65rem; text-transform: uppercase; }
 
 @media (max-width: 1050px) {
   .desktop-nav { display: none; } .site-nav { grid-template-columns: minmax(0,1fr) auto; } .site-nav > .nav-cta { display: none; } .menu-button { display: block; }
@@ -293,7 +316,7 @@ footer { padding: 4rem 5vw 1.5rem; background: var(--foreground); color: var(--p
   .stats { grid-template-columns: repeat(3,1fr); } .contact-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 760px) {
-  .site-nav { height: 72px; padding: 0 1rem; } .brand img { width: 52px; } .brand small { display: none; }
+  .site-nav { height: auto; min-height: 88px; padding: .65rem 1rem; } .brand-logos { gap: .5rem; } .brand-logo-raj { height: 64px; max-width: min(220px, 58vw); } .brand-logo-rk { height: 52px; max-width: min(140px, 44vw); }
   .hero-content { padding: 8rem 1.25rem 8rem; } .hero h1 { font-size: clamp(4rem, 20vw, 6.5rem); }
   .hero-bottom { grid-template-columns: 1fr; } .route-bar { width: 100%; }
   .intro,.about,.why,.vision,.quote { grid-template-columns: 1fr; }
