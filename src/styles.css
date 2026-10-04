@@ -267,10 +267,15 @@ h1 em,h2 em { color: var(--primary); font-style: normal; }
 .media-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
 .media-panel span { position: absolute; left: 1.25rem; bottom: 1.25rem; padding: .6rem .8rem; background: var(--foreground); color: var(--primary-foreground); text-transform: uppercase; font-size: .65rem; font-weight: 800; }
 .vision { display: grid; grid-template-columns: 1fr 1fr; gap: 7vw; align-items: start; background: var(--card); }
-.rk-panel { grid-column: 1/-1; margin-top: 4rem; display: grid; grid-template-columns: .65fr 1fr; align-items: center; gap: 4rem; padding: 3rem; background: var(--foreground); color: var(--primary-foreground); }
+.rk-panel {
+  grid-column: 1/-1; margin-top: 4rem; display: grid; grid-template-columns: .65fr 1fr; align-items: center; gap: 4rem; padding: 3rem;
+  background: oklch(0.84 0.008 75);
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+}
 .rk-panel img { max-height: 230px; margin: auto; }
-.rk-panel h3 { font: 600 3rem/1 var(--font-display); text-transform: uppercase; }
-.rk-panel p { color: color-mix(in oklab, var(--primary-foreground) 60%, transparent); }
+.rk-panel h3 { font: 600 3rem/1 var(--font-display); text-transform: uppercase; color: var(--foreground); }
+.rk-panel p { color: var(--muted-foreground); }
 .stats { display: grid; grid-template-columns: repeat(5, 1fr); background: var(--primary); color: var(--primary-foreground); }
 .stat { min-height: 180px; padding: 2rem; display: grid; align-content: center; border-right: 1px solid color-mix(in oklab, var(--primary-foreground) 25%, transparent); }
 .stat strong { font: 700 clamp(2.8rem, 5vw, 5.5rem)/1 var(--font-display); }
