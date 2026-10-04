@@ -29,18 +29,7 @@ export const fleetData = [
   { name: "Multi-axle trucks", count: "2+", image: UNSPLASH_TRUCK.heavyTruck },
 ];
 
-export const industries = [
-  "Manufacturing",
-  "Automotive",
-  "Construction",
-  "FMCG",
-  "Retail",
-  "Infrastructure",
-  "Industrial Goods",
-  "E-Commerce",
-  "Agriculture",
-  "General Cargo",
-];
+export { industries } from "@/data/industries";
 
 export const reasons = [
   ["Reliability", "Focused on dependable transportation execution, every time."],

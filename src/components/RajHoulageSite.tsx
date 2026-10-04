@@ -1,16 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight, Clock3, Mail, MapPin, Menu, Phone, Truck, X } from "lucide-react";
-import { fleetData, images, industries, logoUrl, nav, reasons, rkGroupLogoUrl, services, stats } from "@/data/site";
-
-function BrandLogos({ className = "" }: { className?: string }) {
-  return (
-    <div className={`brand-logos ${className}`.trim()}>
-      <img className="brand-logo-raj" src={logoUrl} alt="Raj Houlage Pvt. Ltd." />
-      <img className="brand-logo-rk" src={rkGroupLogoUrl} alt="RK Group" />
-    </div>
-  );
-}
+import { Link } from "@tanstack/react-router";
+import { BrandLogos } from "@/components/BrandLogos";
+import { INDUSTRY_DETAILS } from "@/data/industries";
+import { fleetData, images, logoUrl, nav, reasons, rkGroupLogoUrl, services, stats } from "@/data/site";
 
 const MotionSection = motion.section;
 
@@ -96,7 +90,29 @@ function Journey() {
 }
 
 function Industries() {
-  return <section id="industries" className="industries section-pad"><Reveal><SectionTitle eyebrow="Sectors in motion">Industries we serve</SectionTitle></Reveal><div className="industry-layout"><div className="industry-image"><img src={images.industries} alt="Gravel and aggregate being loaded onto a haulage truck for construction delivery" /></div><div className="industry-list">{industries.map((item, i) => <Reveal className="industry-item" key={item}><span>{String(i + 1).padStart(2, "0")}</span><h3>{item}</h3><ArrowRight /></Reveal>)}</div></div></section>;
+  return (
+    <section id="industries" className="industries section-pad">
+      <Reveal>
+        <SectionTitle eyebrow="Sectors in motion">Industries we serve</SectionTitle>
+      </Reveal>
+      <div className="industry-layout">
+        <div className="industry-image">
+          <img src={images.industries} alt="Gravel and aggregate being loaded onto a haulage truck for construction delivery" />
+        </div>
+        <div className="industry-list">
+          {INDUSTRY_DETAILS.map((item, i) => (
+            <Reveal key={item.slug}>
+              <Link to="/industries/$slug" params={{ slug: item.slug }} className="industry-item">
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{item.name}</h3>
+                <ArrowRight aria-hidden />
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function WhyUs() {
